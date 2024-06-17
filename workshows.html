@@ -70,6 +70,7 @@
             background-color: #6CA6CD;
         }
 
+
         #portfolio {
             display: flex;
             flex-direction: column;
@@ -132,16 +133,6 @@
             bottom: 0;
         }
 
-        #qrcode {
-            position: fixed; /* 或者使用 absolute，根据需要选择定位方式 */
-            bottom: 20px; /* 距离底部的距离 */
-            left: 20px; /* 距离右侧的距离 */
-            background-color: white; /* 可选：设置背景色 */
-            padding: 10px; /* 可选：设置内边距 */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 可选：添加阴影效果 */
-            z-index: 1000; /* 可选：设置层级 */
-        }
-
         .back-to-top {
             position: fixed;
             bottom: 40px;
@@ -192,9 +183,9 @@
         <div class="work" id="work1">
             <h2>动转壳体零件图</h2>
             <p>汽车动力转向器壳体零件图 A1</p>
-            <embed src="动转壳体零件图-a1.pdf" type="application/pdf">
+            <img src="动转壳体零件图-a1.pdf" alt="动转壳体零件图 A1">
         </div>
-
+        
         <div class="work" id="work2">
             <h2>动转壳体铸造工艺图</h2>
             <p>汽车动力转向器壳体铸造工艺图 A3</p>
@@ -248,66 +239,59 @@
             <p>减速器-齿轮零件图</p>
             <embed src="齿轮零件图-常晓云.pdf" type="application/pdf">
         </div>
+        <!-- 其他作品 -->
 
     </section>
-
-    <div id="qrcode"></div>
     <footer>
         <p>版权所有 © 2024</p>
     </footer>
 
-    
-
     <button class="back-to-top" onclick="scrollToTop()">回到顶部</button>
 
     <script src="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.js"></script>
-    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <script>
-        var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: "https://your-portfolio-url.com",
-            width: 128,
-            height: 128
+        document.addEventListener('DOMContentLoaded', function () {
+            // 初始化 Viewer.js
+            var viewer = new Viewer(document.getElementById('portfolio'), {
+                toolbar: {
+                    zoomIn: true,
+                    zoomOut: true,
+                    oneToOne: true,
+                    reset: true,
+                    prev: true,
+                    play: false,
+                    next: true,
+                    rotateLeft: true,
+                    rotateRight: true,
+                    flipHorizontal: false,
+                    flipVertical: false,
+                },
+            });
+
+            // 菜单切换功能
+            document.querySelector('.menu-toggle').addEventListener('click', function() {
+                var menu = document.getElementById("menu");
+                if (menu.style.display === "none" || menu.style.display === "") {
+                    menu.style.display = "block";
+                } else {
+                    menu.style.display = "none";
+                }
+            });
+
+            // 回到顶部功能
+            window.onscroll = function() {
+                var backToTopButton = document.querySelector(".back-to-top");
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    backToTopButton.style.display = "block";
+                } else {
+                    backToTopButton.style.display = "none";
+                }
+            };
+
+            document.querySelector('.back-to-top').addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         });
-
-        // 初始化 Viewer.js
-        var viewer = new Viewer(document.getElementById('portfolio'), {
-            toolbar: {
-                zoomIn: true,
-                zoomOut: true,
-                oneToOne: true,
-                reset: true,
-                prev: true,
-                play: false,
-                next: true,
-                rotateLeft: true,
-                rotateRight: true,
-                flipHorizontal: false,
-                flipVertical: false,
-            },
-        });
-
-        function toggleMenu() {
-            var menu = document.getElementById("menu");
-            if (menu.style.display === "none" || menu.style.display === "") {
-                menu.style.display = "block";
-            } else {
-                menu.style.display = "none";
-            }
-        }
-
-        // 回到顶部功能
-        window.onscroll = function() {
-            var backToTopButton = document.querySelector(".back-to-top");
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                backToTopButton.style.display = "block";
-            } else {
-                backToTopButton.style.display = "none";
-            }
-        };
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
     </script>
 </body>
 </html>
