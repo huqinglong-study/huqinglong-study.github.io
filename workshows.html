@@ -23,10 +23,11 @@
         .work h2 { margin: 0.5em 0; font-size: 1.5em; color: #333; }
         .work p { color: #666; }
         .work:last-child { margin-bottom: 3em; }
-        footer { text-align: center; padding: 0.1em 0; background-color: #003087; color: white; position: fixed; width: 100%; bottom: 0; }
-        .back-to-top { position: fixed; bottom: 40px; right: 20px; display: none; background-color: #003087; color: white; padding: 0.5em 1em; border-radius: 5px; cursor: pointer; font-size: 1em; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); transition: background-color 0.3s ease; }
+        footer { text-align: center; padding: 1em 0; background-color: #003087; color: white; }
+        .contact-info { margin-bottom: 0.5em; }
+        .back-to-top { position: fixed; bottom: 10px; right: 20px; display: none; background-color: #003087; color: white; padding: 0.5em 1em; border-radius: 5px; cursor: pointer; font-size: 1em; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); transition: background-color 0.3s ease; }
         .back-to-top:hover { background-color: #6CA6CD; }
-        #qrcode { position: fixed; bottom: 20px; left: 20px; background-color: white; padding: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 1000; }
+        #qrcode { background-color: white; padding: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 1000; margin-top: 1em; }
     </style>
 </head>
 <body>
@@ -101,8 +102,12 @@
             <img src="齿轮零件图-常晓云.png" alt="齿轮零件图" loading="lazy">
         </div>
     </section>
-    <div id="qrcode"></div>
-    <footer><p>版权所有 © 2024</p></footer>
+    
+    <footer>
+        <div id="qrcode"></div>
+        <p class="contact-info">联系方式: 15634102003</p>
+        <p>版权归常晓云个人所有 © 2024</p>
+    </footer>
     <button class="back-to-top" onclick="scrollToTop()">返回顶部</button>
     
     <script src="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.js" defer></script>
@@ -155,3 +160,4 @@
     </script>
 </body>
 </html>
+
