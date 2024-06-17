@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>常晓云的作品集-北航-山大</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.css">
     <style>
+        /* 全局样式设置 */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -91,11 +93,19 @@
             transform: scale(1.02);
         }
 
-        .work img, .work embed, .work iframe {
+        .work embed, .work iframe {
             width: 100%;
             height: 80vh;
             object-fit: cover;
             border-radius: 8px;
+        }
+
+        .work img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer; /* 添加光标指针，表示可以点击放大 */
         }
 
         .work h2 {
@@ -123,10 +133,15 @@
         }
 
         #qrcode {
-            margin-top: 2em;
+            position: fixed; /* 或者使用 absolute，根据需要选择定位方式 */
+            bottom: 20px; /* 距离底部的距离 */
+            left: 20px; /* 距离右侧的距离 */
+            background-color: white; /* 可选：设置背景色 */
+            padding: 10px; /* 可选：设置内边距 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 可选：添加阴影效果 */
+            z-index: 1000; /* 可选：设置层级 */
         }
 
-        /* 回到顶部按钮样式 */
         .back-to-top {
             position: fixed;
             bottom: 40px;
@@ -145,8 +160,6 @@
         .back-to-top:hover {
             background-color: #6CA6CD;
         }
-
-        
     </style>
 </head>
 <body>
@@ -235,21 +248,42 @@
             <p>减速器-齿轮零件图</p>
             <embed src="齿轮零件图-常晓云.pdf" type="application/pdf">
         </div>
+
     </section>
+
+    <div id="qrcode"></div>
     <footer>
         <p>版权所有 © 2024</p>
     </footer>
 
-    <div id="qrcode"></div>
     
+
     <button class="back-to-top" onclick="scrollToTop()">回到顶部</button>
 
+    <script src="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.js"></script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <script>
         var qrcode = new QRCode(document.getElementById("qrcode"), {
             text: "https://your-portfolio-url.com",
             width: 128,
             height: 128
+        });
+
+        // 初始化 Viewer.js
+        var viewer = new Viewer(document.getElementById('portfolio'), {
+            toolbar: {
+                zoomIn: true,
+                zoomOut: true,
+                oneToOne: true,
+                reset: true,
+                prev: true,
+                play: false,
+                next: true,
+                rotateLeft: true,
+                rotateRight: true,
+                flipHorizontal: false,
+                flipVertical: false,
+            },
         });
 
         function toggleMenu() {
