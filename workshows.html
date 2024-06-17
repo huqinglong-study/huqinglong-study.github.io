@@ -151,6 +151,16 @@
         .back-to-top:hover {
             background-color: #6CA6CD;
         }
+
+        #qrcode {
+            position: fixed; /* 或者使用 absolute，根据需要选择定位方式 */
+            bottom: 20px; /* 距离底部的距离 */
+            left: 20px; /* 距离右侧的距离 */
+            background-color: white; /* 可选：设置背景色 */
+            padding: 10px; /* 可选：设置内边距 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 可选：添加阴影效果 */
+            z-index: 1000; /* 可选：设置层级 */
+        }
     </style>
 </head>
 <body>
@@ -242,6 +252,8 @@
         <!-- 其他作品 -->
 
     </section>
+
+    <div id="qrcode"></div>
     <footer>
         <p>版权所有 © 2024</p>
     </footer>
@@ -249,6 +261,7 @@
     <button class="back-to-top" onclick="scrollToTop()">回到顶部</button>
 
     <script src="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // 初始化 Viewer.js
@@ -267,7 +280,12 @@
                     flipVertical: false,
                 },
             });
-
+            
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "https://your-portfolio-url.com",
+            width: 128,
+            height: 128
+        });
             // 菜单切换功能
             document.querySelector('.menu-toggle').addEventListener('click', function() {
                 var menu = document.getElementById("menu");
